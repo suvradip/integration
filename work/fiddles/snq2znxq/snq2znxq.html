@@ -1,0 +1,83 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: print</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#print {
+    height: 25px;
+    font-size: 13px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- This sample shows the usage of the print() method -->
+<div id="indicatorDiv">Method Name: <b>print()</b>
+
+    <br>
+    <br>Prints individual charts. It hides all elements on a page except the chart to print and then invokes the page printing function <b>(window.print())</b>.</br>
+    <br>Click the <b>Print Chart</b> button shown below.</br>
+</div>
+<br>
+<center>
+    <br>
+    <button id="print">Print chart</button>
+    </br>
+    <div id="chart-container">FusionCharts will render here</div>
+</center><script type="text/javascript">FusionCharts.ready(function () {
+    var chart = {
+        type: 'doughnut2d',
+        renderAt: 'chart-container',
+        width: '450',
+        height: '250',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Split of Revenue by Product Categories",
+                    "subCaption": "Last year",
+                    "numberPrefix": "$",
+                    "theme": "fint",
+                    "captionFontSize": "13",
+                    "subCaptionFontSize": "12"
+            },
+                "data": [{
+                "label": "Food",
+                    "value": "28504"
+            }, {
+                "label": "Apparels",
+                    "value": "14633"
+            }, {
+                "label": "Electronics",
+                    "value": "10507"
+            }, {
+                "label": "Household",
+                    "value": "4910"
+            }]
+        }
+    };
+
+    var revenueChart = new FusionCharts(chart);
+    revenueChart.render();
+
+
+    /**
+     * @description
+     * The print() method prints individual charts. It hides all elements on a page except the chart to print and then invokes the page printing function (window.print()).    
+     *
+     * @param {Object} options: this paramiter contains hideButtons as its attribute and its default value is true 
+     * usage: chartObj.print();
+     *         chartObj.print({false});
+
+     */
+    function print() {
+        revenueChart.print();
+    }
+    /* function printP()
+    {
+        revenueChart.print({hideButtons : false });
+    }*/
+
+    document.getElementById("print").addEventListener("click", print);
+    //document.getElementById("print_p").addEventListener("click", printP);
+
+
+});</script></body></html>

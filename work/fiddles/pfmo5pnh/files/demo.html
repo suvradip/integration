@@ -1,0 +1,20 @@
+<!-- This sample shows the event parameters, and their values, when dataUpdated event is triggered-->
+<div id="indicatorDiv">Event name: <b> dataUpdated </b> 
+    <br>
+    <br>Triggered when chart data is updated and the chart is redrawn, after the drawComplete event is triggered.</br>
+    <br>All events, when triggered, will provide two parameters for the handler - <b> eventObj </b> (object containing information generic to all events) and <b> dataObj </b> (object containing information specific to an event).</br>
+    <br>The dataUpdated event is triggered when the chart initially loads as well as on subsequent data updates. Click the <b> Update Chart Data </b> button to trigger the dataUpdated event.</br>
+    <br>Scroll down to the table rendered below the chart to view information contained in the dataObj object. To view information contained in the eventObj object, open the console. (You can also view the eventObj and dataObj information when the chart first loads).</br>
+    </br>
+</div>
+<div id="chart-container">FusionCharts will render here</div>
+<button id="update-chart">Update Chart Data</button>
+<div>
+    <div>
+        <div id="header">
+            <div class="parameter-name">Parameter Name</div>
+            <div class="parameter-value">Parameter Value</div>
+        </div>
+        <div id="attrs-table"></div>
+    </div>
+</div>

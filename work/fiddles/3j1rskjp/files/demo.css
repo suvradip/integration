@@ -1,0 +1,28 @@
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#absolute {
+    height: 25px;
+    font-size: 13px;
+}
+#relative {
+    height: 25px;
+    font-size: 13px;
+}
+#angle {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+    width: 200px;
+    height: 20px;
+}
+.err {
+    color:red;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}

@@ -1,0 +1,22 @@
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#chart-container {
+    text-align: center;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#render {
+    height: 25px;
+    font-size: 13px;
+}
+#message {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}

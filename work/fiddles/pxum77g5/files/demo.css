@@ -1,0 +1,24 @@
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+.container {
+    float:left;
+}
+#msg {
+    height:100px;
+    overflow:auto;
+}
+#text {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#get {
+    height: 25px;
+    font-size: 13px;
+}

@@ -1,0 +1,27 @@
+<!-- This sample shows the usage of the isPlotItemSliced() method. -->
+<div id="indicatorDiv">Method Name: <b>isPlotItemSliced()</b>
+
+    <br>
+    <br>Checks whether a particular slice of the pie/doughnut chart is sliced-out or sliced-in.</br>
+    <br>Select a pie-slice from the drop-down given below. Click <b>Check Status</b>. The text <b>The selected data plot is </b>, rendered below the button, is updated to reflect the status of the slice (sliced/not sliced).</br>
+    <br>
+    <center>
+        <select id="slice_name">
+            <option value="0">Teenager</option>
+            <option value="1">Adult</option>
+            <option value="2">Mid-age</option>
+        </select>
+        </br>
+        <br>
+        <button id="check_status"><b>Check Status</b>
+
+        </button>
+        </br>
+        <br>
+        <div id="status">The selected pie slice is <span id="msg"></span>
+
+        </div>
+        </br>
+        <div id="chart-container">FusionCharts will render here</div>
+    </center>
+</div>

@@ -1,0 +1,23 @@
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#chart_message {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+    width: 150px;
+    height: 20px;
+}
+#mode {
+    height: 25px;
+    font-size: 13px;
+}
+#show_message {
+    height: 25px;
+    font-size: 13px;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: fomatNumber</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#format {
+    height: 25px;
+    font-size: 13px;
+}
+#format_message {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#number {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+    width: 150px;
+    height: 20px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- This sample shows the usage of the formatNumber() method -->
+<div id="indicatorDiv">Method Name: <b>formatNumber()</b>
+
+    <br>
+    <br>Formats input numbers based on the formatting configuration passed. The function can be called globally on the FusionCharts object or on a specific instance of FusionCharts Suite XT.</br>
+    <br>Enter a number in the text box shown below and click <b>Format Number</b>.</br>
+</div>
+<br>
+<center>
+    <br>
+    <input type="text" id="number" placeholder="Enter a number here." height="35"></input>
+    <button id="format">Format Number</button>
+    </br>
+    <br>
+    <div id="format_message">The formatted number : <span id="msg"></span>
+
+    </div>
+    </br>
+    </br>
+</center><script type="text/javascript">/*
+ * @description
+ * The formatNumber() method formats input numbers based on the formatting configuration passed. The function can be called globally on the FusionCharts object or on a specific instance of FusionCharts Suite XT.
+ * @param {Number} number: Number to be formatted
+ * @param {String} type: When called globally on the FusionCharts object, the function applies the configuration settings to all numbers on the chart. This parameter selectively formats numbers based on chart elements, by taking yaxisvalues, xaxisvalues, and datalabels as values.Default: datalabels
+ * @param {Object} config: Optional number formatting attributes to override the default number formatting options of a chart.
+ While calling formatNumber on the FusionCharts object, this becomes the second parameter.
+
+*/
+function format() {
+    var number = document.getElementById("number").value;
+    var msg = document.getElementById("msg");
+    msg.innerHTML = FusionCharts.formatNumber(number, {
+        "numberPrefix": "$"
+    });
+
+}
+document.getElementById("format").addEventListener("click", format);</script></body></html>

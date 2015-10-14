@@ -1,0 +1,127 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: addEventListener (static)</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#add_lstnr {
+    height: 25px;
+    font-size: 13px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- Fiddle sample for the static addEventListener() method -->
+<div id="indicatorDiv">Method name: <b>addEventListener()</b> (static)
+    <br>
+    <br>Listens to events across all FusionCharts instances on a page and executes custom functions when an event is triggered.</br>
+    <br>For this implementation, we have three pie charts rendered on the same page. When <b>Add event listener for all charts</b> is clicked, the <b>dataplotRollOver</b> event is configured for all three pie charts.</br>
+        <br></br>
+    <center>
+        <button id="add_lstnr">Add event listener for all charts</button>
+        <br>
+        <br>
+            <div id="data1"></div>
+        </br>
+        <br>
+        <div id="chart-container1">Chart Container 1</div>
+        </br>
+        <br>
+        <div id="chart-container2">Chart Container 2</div>
+        </br>
+        <br>
+        <div id="chart-container3">Chart Container 3</div>
+        </br> </center><script type="text/javascript">FusionCharts.ready(function () {
+    var chart_1 = new FusionCharts({
+        type: 'pie3d',
+        renderAt: 'chart-container1',
+        width: '400',
+        height: '200',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Revenue Comparison",
+                    "subCaption": "2012",
+                    "numberPrefix": "$",
+                    "theme": "fint"
+            },
+                "data": [{
+                "label": "Food products",
+                    "value": "2500"
+            }, {
+                "label": "Electronics",
+                    "value": "2000"
+            }]
+        }
+    });
+    chart_1.render();
+
+    var chart_2 = new FusionCharts({
+        type: 'pie3d',
+        renderAt: 'chart-container2',
+        width: '400',
+        height: '200',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Revenue Comparison",
+                    "subCaption": "2013",
+                    "numberPrefix": "$",
+                    "theme": "fint"
+            },
+                "data": [{
+                "label": "Food products",
+                    "value": "2600"
+            }, {
+                "label": "Electronics",
+                    "value": "1800"
+            }]
+        }
+    });
+    chart_2.render();
+
+    var chart_3 = new FusionCharts({
+        type: 'pie3d',
+        renderAt: 'chart-container3',
+        width: '400',
+        height: '200',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Revenue Comparison",
+                    "subCaption": "2014",
+                    "numberPrefix": "$",
+                    "theme": "fint"
+            },
+                "data": [{
+                "label": "Food products",
+                    "value": "2800"
+            }, {
+                "label": "Electronics",
+                    "value": "2500"
+            }]
+        }
+    });
+    chart_3.render();
+
+    function handler(eventObj, dataObj) {
+
+
+        var json = eventObj.sender.getJSONData();
+        document.getElementById("data1").innerHTML = "Label: " + dataObj.categoryLabel + " | Value: " + dataObj.dataValue;
+    }
+    
+    /**
+     * @description
+     * The static addEventListener() Listens to events across all FusionCharts instances on a page and executes custom functions when an event is triggered.
+     * @param {String or array} type: Type (name) of the event to listen to. To register the listener for multiple events in the same registration call, provide all event names as an array.
+             * @param {FusionCharts~eventListener} listener: Function to be exceuted when the event is triggered. If multiple listeners are bound to an event, the listeners are executed in the order of definition, with arguments specific to the triggered event.
+             * usage: FusionCharts.addEventListener(type,listener);
+     */
+
+    function addListener() {
+        FusionCharts.addEventListener("dataplotRollOver", handler);
+    }
+
+    document.getElementById("add_lstnr").addEventListener("click", addListener);
+
+});</script></body></html>

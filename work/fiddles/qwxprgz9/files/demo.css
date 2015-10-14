@@ -1,0 +1,46 @@
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#header {
+    display: none;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 14px;
+}
+p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#attrs-table {
+    text-align: center;
+    width: 500px;
+}
+.parameter-name, .parameter-value {
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+}
+.title, .value {
+    float:left;
+    width: 230px;
+    height: 20px;
+    background: #fff;
+    padding: 5px 10px;
+}
+.title {
+    clear: left;
+}
+.title:nth-child(4n+1), .value:nth-child(4n+2) {
+    background: rgb(0, 117, 194);
+    color: #fff;
+}
+.value {
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

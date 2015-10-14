@@ -1,0 +1,153 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Event: realTimeUpdateError</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#header {
+    display: none;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 14px;
+}
+p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#attrs-table {
+    text-align: center;
+    width: 500px;
+}
+.parameter-name, .parameter-value {
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+}
+.title, .value {
+    float:left;
+    width: 230px;
+    height: 20px;
+    background: #fff;
+    padding: 5px 10px;
+}
+.title {
+    clear: left;
+}
+.title:nth-child(4n+1), .value:nth-child(4n+2) {
+    background: rgb(0, 117, 194);
+    color: #fff;
+}
+.value {
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script></head><body><!-- This sample shows the event parameters, and their values, when realTimeUpdateError event is triggered-->
+<div id="indicatorDiv">Event name: <b> realTimeUpdateError </b> 
+    <br>
+    <br>Triggered every time there is an error in updating chart data in real-time, using the dataStreamURL attribute.</br>
+    <br>All events, when triggered, will provide two parameters for the handler - <b> eventObj </b> (object containing information generic to all events) and <b> dataObj </b> (object containing information specific to an event).</br>
+    <br>Scroll down to the table rendered below the chart to view information contained in the dataObj object. To view information contained in the eventObj object, open the console.</br>
+    </br>
+</div>
+<div id="chart-container">FusionCharts will render here</div>
+<div>
+    <div>
+        <div id="header">
+            <div class="parameter-name">Parameter Name</div>
+            <div class="parameter-value">Parameter Value</div>
+        </div>
+        <div id="attrs-table"></div>
+    </div>
+</div><script type="text/javascript">FusionCharts.ready(function () {
+    var footfallChart = new FusionCharts({
+        id: "mychart",
+        type: 'realtimecolumn',
+        renderAt: 'chart-container',
+        width: '500',
+        height: '210',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Harry's Supermart - Bakersfield Central",
+                    "subCaption": "Footfalls",
+                    "showrealtimevalue": "1",
+                    "dataStreamURL": "explore/data.php",
+                    "paletteColors": "#008ee4,#9b59b6",
+                    "borderAlpha": "0",
+                    "yaxismaxvalue": "20",
+                    "numdisplaysets": "10",
+                    "usePlotGradientColor": "0",
+                    "plotBorderAlpha": "0",
+                    "canvasBorderAlpha": "20",
+                    "labeldisplay": "rotate",
+                    "slantLabels": "1",
+                    "showLegend": "0",
+                    "bgAlpha": "0",
+                    "showValues": "0",
+                    "numbersuffix": " Customers",
+                    "showlabels": "1",
+                    "animation": "0",
+                    "showRealTimeValue": "0"
+            },
+                "categories": [{
+                "category": [{
+
+                }]
+            }],
+                "dataset": [{
+                "seriesname": "Footfall",
+                    "alpha": "100"
+            }]
+        },
+        events: {
+            'beforeRender': function (evt, arg) {
+                var controllers = document.createElement('div');
+                controllers.setAttribute('id', 'tableCont');
+                controllers.innerHTML = "<div id='errorView' style='width:450px;border: 2px solid #666666;background-color:#9b545b;  color:#ffffff;display:none;padding: 3px;float: left; margin-left: 80px;margin-top: 40px;'></div>";
+                //Display container div and write table
+                arg.container.parentNode.insertBefore(controllers, arg.container.nextSibling);
+
+            },
+
+            /**
+             * @description
+             * The realtimeUpdateError event is triggered every time there is an error in updating chart data in real-time, using the dataStreamURL attribute.
+             *
+             * @param {Object} eventObj: An object containing all the details related to this event like eventId, sender, etc.
+             * @param {Object} dataObj: An object containing all the details related to chart data such as the source of the real-time data, error message, etc.
+             */
+
+                'RealtimeUpdateError': function (eventObj, dataObj) {
+                var dispBox = document.getElementById("errorView");
+                dispBox.style.display = "block";
+                dispBox.innerHTML = "Problem occurred while updating real-time data. The error status code is" + dataObj.httpStatus;
+
+                console.log(eventObj);
+                var header = document.getElementById('header');
+                header.style.display = 'block';
+
+                var tempDiv = document.createElement('div');
+                var attrsTable = document.getElementById('attrs-table');
+                var titleDiv, valueDiv;
+                for (var prop in dataObj) {
+                    titleDiv = document.createElement('div');
+                    titleDiv.className = 'title';
+                    titleDiv.innerHTML = prop;
+
+                    valueDiv = document.createElement('div');
+                    valueDiv.className = 'value';
+                    valueDiv.innerHTML = dataObj[prop];
+
+                    tempDiv.appendChild(titleDiv);
+                    tempDiv.appendChild(valueDiv);
+                }
+                attrsTable.innerHTML = '';
+                attrsTable.appendChild(tempDiv);
+
+            }
+        }
+    }).render();
+
+});</script></body></html>

@@ -1,0 +1,83 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: getDataAsCSV</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#get_data_as_csv {
+    height: 25px;
+    font-size: 13px;
+}
+#msg {
+    height:100px;
+    overflow:auto;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- This sample shows the usage of the getDataAsCSV() method -->
+<div id="indicatorDiv">Method Name: <b>getDataAsCSV()</b>
+
+    <br>
+    <br>Fetch chart data as comma-separated values. The delimiter can be changed by passing relevant chart attributes.</br>
+    <br>Click <b>Get Data as CSV</b> to get the chart data in the CSV format.</br>
+</div>
+<br>
+<center>
+    <br>
+    <button id="get_data_as_csv">Get Data as CSV</button>
+    </br>
+    <br>
+    <div id="msg"></div>
+    </br>
+    <br>
+    <div id="chart-container" class="container">FusionCharts will render here.</div>
+    </br>
+</center><script type="text/javascript">FusionCharts.ready(function () {
+    var revenueChart = new FusionCharts({
+        type: 'doughnut2d',
+        renderAt: 'chart-container',
+        width: '350',
+        height: '350',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Split of Revenue by Product Categories",
+                    "subCaption": "Last year",
+                    "numberPrefix": "$",
+                    "theme": "fint",
+                    "captionFontSize": "13",
+                    "subcaptionFontSize": "12",
+                    "subcaptionFontBold": "0"
+            },
+                "data": [{
+                "label": "Food",
+                    "value": "28504"
+            }, {
+                "label": "Apparels",
+                    "value": "14633"
+            }, {
+                "label": "Electronics",
+                    "value": "10507"
+            }, {
+                "label": "Household",
+                    "value": "4910"
+            }]
+        }
+    }).render();
+
+    /**
+     * @description
+     * The getDataAsCSV() method fetches chart data as comma-separated values. The delimiter can be changed by passing relevant chart attributes.
+     * usage: chartObj.getDataAsCSV();
+     *         
+     */
+    function getCSV() {
+        var csv = revenueChart.getDataAsCSV();
+        csv = csv.replace(/\n/g, "<br>");
+        document.getElementById('msg').innerHTML = csv;
+    }
+
+    document.getElementById("get_data_as_csv").addEventListener("click", getCSV);
+});</script></body></html>

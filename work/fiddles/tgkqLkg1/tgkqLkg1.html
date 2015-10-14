@@ -1,0 +1,146 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: removeEventListener (static)</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#add_lstnr {
+    height: 25px;
+    font-size: 13px;
+}
+#rem_lstnr {
+    height: 25px;
+    font-size: 13px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- Fiddle sample for the static removeEventListener() method -->
+<div id="indicatorDiv">Method name: <b>removeEventListener()</b> (static)
+    <br>
+    <br>Removes the event listener(s) bound to an event configured for all charts on the page.</br>
+    <br>For this implementation, we have three pie charts rendered on the same page. When <b>Add event listener for all charts</b> is clicked, the <b>dataplotRollOver</b> event is configured for all three pie charts.<br>When <b>Remove event listener for all charts</br> is clicked, the event listener is removed for all charts rendered on the page.</br>    
+    <br></br>
+    <center>
+        <button id="add_lstnr">Add event listener for all charts</button>
+        <br></br>
+        <button id="rem_lstnr">Remove event listener for all charts</button>
+        <br>
+        <br>
+        <div id="data1"><i></i>
+
+        </div>
+        </br>
+        <br>
+        <div id="chart-container1">Chart Container 1</div>
+        </br>
+        <br>
+        <div id="chart-container2">Chart Container 2</div>
+        </br>
+        <br>
+        <div id="chart-container3">Chart Container 3</div>
+        </br>
+    </center><script type="text/javascript">FusionCharts.ready(function () {
+    var chart_1 = new FusionCharts({
+        type: 'pie3d',
+        renderAt: 'chart-container1',
+        width: '400',
+        height: '200',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Revenue Comparison",
+                    "subCaption": "2012",
+                    "numberPrefix": "$",
+                    "theme": "fint"
+            },
+                "data": [{
+                "label": "Food products",
+                    "value": "2500"
+            }, {
+                "label": "Electronics",
+                    "value": "2000"
+            }]
+        }
+    });
+    chart_1.render();
+
+    var chart_2 = new FusionCharts({
+        type: 'pie3d',
+        renderAt: 'chart-container2',
+        width: '400',
+        height: '200',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Revenue Comparison",
+                    "subCaption": "2013",
+                    "numberPrefix": "$",
+                    "theme": "fint"
+            },
+                "data": [{
+                "label": "Food products",
+                    "value": "2600"
+            }, {
+                "label": "Electronics",
+                    "value": "1800"
+            }]
+        }
+    });
+    chart_2.render();
+
+    var chart_3 = new FusionCharts({
+        type: 'pie3d',
+        renderAt: 'chart-container3',
+        width: '400',
+        height: '200',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Revenue Comparison",
+                    "subCaption": "2014",
+                    "numberPrefix": "$",
+                    "theme": "fint"
+            },
+                "data": [{
+                "label": "Food products",
+                    "value": "2800"
+            }, {
+                "label": "Electronics",
+                    "value": "2500"
+            }]
+        }
+    });
+    chart_3.render();
+
+    function handler(eventObj, dataObj) {
+
+
+        var json = eventObj.sender.getJSONData();
+        document.getElementById("data1").innerHTML = "Label: " + dataObj.categoryLabel + " | Value: " + dataObj.dataValue;
+    }
+
+    function addListener() {
+        FusionCharts.addEventListener("dataplotRollOver", handler);
+    }
+    
+    /**
+             * @description
+             * The static removeEventListener() method Removes the event listener(s) bound to an event configured for all charts on the page.
+.
+             *
+             * @param {String, Array} type: Type (name) of the event whose listener(s) has to be removed
+             * @param {Function} listener: Listener function to remove
+             * usage: FusionCharts.removeEventListener(type,listener);
+          
+             */
+
+    function removeListener() {
+        FusionCharts.removeEventListener("dataplotRollOver", handler);
+        document.getElementById("data1").innerHTML = "The event listener has been removed.";
+    }
+
+    document.getElementById("add_lstnr").addEventListener("click", addListener);
+
+    document.getElementById("rem_lstnr").addEventListener("click", removeListener);
+
+});</script></body></html>

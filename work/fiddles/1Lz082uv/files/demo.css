@@ -1,0 +1,19 @@
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#get_data_as_csv {
+    height: 25px;
+    font-size: 13px;
+}
+#msg {
+    height:100px;
+    overflow:auto;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}

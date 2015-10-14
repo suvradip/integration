@@ -1,0 +1,24 @@
+<!-- This sample shows the usage of the showChartMessage() method. -->
+<div id="indicatorDiv">Method Name: <b>showChartMessage()</b>
+
+    <br>
+    <br>Shows a text message on a chart.</br>
+    <br>In the text box given below, enter your message.
+    <br>From the drop-down, select the mode to render the message.
+    <br>Click <b>Show Message</b> to render the message.</br>
+    <br>
+    <center>
+        <input type="text" id="chart_message" placeholder="Enter your message here." height="35"></input>
+        <br></br>
+        <select id="mode">
+            <option value="overlaycan">Show message as modal</option>
+            <option value="overlay">Show message as non-closable modal</option>
+            <option value="onchart">Show message over the chart</option>
+        </select>
+        </br>
+        <br>
+        <button id="show_message">Show Message</button>
+        </br>
+    </center>
+</div>
+<div id="chart-container">FusionCharts will render here</div>

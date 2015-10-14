@@ -1,0 +1,208 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Event: realtimeUpdateComplete</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#header {
+    display: none;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 14px;
+}
+p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#attrs-table {
+    text-align: center;
+    width: 500px;
+}
+.parameter-name, .parameter-value {
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+}
+.title, .value {
+    float:left;
+    width: 230px;
+    height: 20px;
+    background: #fff;
+    padding: 5px 10px;
+}
+.title {
+    clear: left;
+}
+.title:nth-child(4n+1), .value:nth-child(4n+2) {
+    background: rgb(0, 117, 194);
+    color: #fff;
+}
+.value {
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script></head><body><!-- This sample shows the event parameters, and their values, when realtimeUpdateComplete event is triggered-->
+<div id="indicatorDiv">Event name: <b> realtimeUpdateComplete </b> 
+    <br>
+    <br>Triggered every time a real-time chart completes updating, using the dataStreamURL attribute or through user-interaction (using the edit mode of the real-time angular and linear gauges).</br>
+    <br>All events, when triggered, will provide two parameters for the handler - <b> eventObj </b> (object containing information generic to all events) and <b> dataObj </b> (object containing information specific to an event).</br>
+    <br>Scroll down to the table rendered below the chart to view information contained in the dataObj object. To view information contained in the eventObj object, open the console.</br>
+    </br>
+</div>
+<div id="chart-container">FusionCharts will render here</div>
+<div>
+    <div>
+        <div id="header">
+            <div class="parameter-name">Parameter Name</div>
+            <div class="parameter-value">Parameter Value</div>
+        </div>
+        <div id="attrs-table"></div>
+    </div>
+</div><script type="text/javascript">FusionCharts.ready(function () {
+    var footfallChart = new FusionCharts({
+        id: "mychart",
+        type: 'realtimecolumn',
+        renderAt: 'chart-container',
+        width: '500',
+        height: '210',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Harry's Supermart - Bakersfield Central",
+                    "subCaption": "Footfalls",
+                    "showrealtimevalue": "1",
+                    "paletteColors": "#008ee4,#9b59b6",
+                    "borderAlpha": "0",
+                    "yaxismaxvalue": "20",
+                    "numdisplaysets": "10",
+                    "usePlotGradientColor": "0",
+                    "plotBorderAlpha": "0",
+                    "canvasBorderAlpha": "20",
+                    "labeldisplay": "rotate",
+                    "slantLabels": "1",
+                    "showLegend": "0",
+                    "bgAlpha": "0",
+                    "showValues": "0",
+                    "numbersuffix": " Customers",
+                    "showlabels": "1",
+                    "animation": "0",
+                    "showRealTimeValue": "0"
+            },
+                "categories": [{
+                "category": [{
+                    "label": "Start"
+                }]
+            }],
+                "dataset": [{
+                "seriesname": "Footfall",
+                    "alpha": "100",
+                    "data": [{
+                    "value": "5"
+                }]
+            }]
+        },
+        events: {
+            'beforeRender': function (evt, arg) {
+                var controllers = document.createElement('div');
+                controllers.setAttribute('id', 'tableCont');
+                controllers.innerHTML = "<div id='tableView' style='width:275px;margin-left:150px;height:110px;overflow-y:auto;display:none;'></div>";
+                //Display container div and write table
+                arg.container.parentNode.insertBefore(controllers, arg.container.nextSibling);
+            },
+
+            /**
+             * @description
+             * The realtimeUpdateComplete event is triggered every time a real-time chart completes updating, using the dataStreamURL attribute or through user-interaction (using the edit mode of the real-time angular and linear gauges).
+             *
+             * @param {Object} eventObj: An object containing all the details related to this event like eventId, sender, etc.
+             * @param {Object} dataObj: An object containing all the details related to chart data such as the source of the real-time data, data value before the update, etc.
+             */
+
+                'realtimeUpdateComplete': function (eventObj, dataObj) {
+
+                var dataArr = eventObj && eventObj.sender.getData(),
+                    dataTable = document.getElementById("tableView"),
+                    str = "";
+                //Creating the table format
+                str += '<table border="1" cellpadding="1" cellspacing="0" borderolor="#cccccc" width="100%">';
+                str += '    <tr>';
+                str += '        <th width="50%" style="padding:3px;font-weight:bold;font-size: 14px;">Time</th>';
+                str += '        <th width="50%" style="padding:3px;font-weight:bold;font-size: 14px;">Customers</th>';
+                str += '    </tr>';
+
+                //Preparing html string to create the table with data
+                for (i = 0; i < dataArr.length; i++) {
+                    if (dataArr[i][0] !== null) {
+                        str += '    <tr>';
+                        str += '        <td width="50%" style="padding:3px">' + dataArr[i][0] + '</td>';
+                        str += '        <td width="50%" style="padding:3px">' + dataArr[i][1] + '</td>';
+                        str += '    </tr>';
+                    }
+                }
+                str += '</table>';
+                //Showing the table
+                dataTable.style.display = "block";
+                //Adding html string in the div container
+                dataTable.innerHTML = str;
+
+                console.log(eventObj);
+                var header = document.getElementById('header');
+                header.style.display = 'block';
+
+                var tempDiv = document.createElement('div');
+                var attrsTable = document.getElementById('attrs-table');
+                var titleDiv, valueDiv;
+                for (var prop in dataObj) {
+                    titleDiv = document.createElement('div');
+                    titleDiv.className = 'title';
+                    titleDiv.innerHTML = prop;
+
+                    valueDiv = document.createElement('div');
+                    valueDiv.className = 'value';
+                    valueDiv.innerHTML = dataObj[prop];
+
+                    tempDiv.appendChild(titleDiv);
+                    tempDiv.appendChild(valueDiv);
+                }
+                attrsTable.innerHTML = '';
+                attrsTable.appendChild(tempDiv);
+            },
+                'rendered': function (evt, arg) {
+                var dataTable = document.getElementById("tableView");
+
+                //Format minutes, seconds by adding 0 prefix accordingly
+                function formatTime(time) {
+                    if (time < 10) {
+                        time = "0" + time;
+                    }
+                    return time;
+                }
+
+                function updateData() {
+                    //Get reference to the chart using its ID
+                    var chartRef = evt && evt.sender,
+                        //We need to create a querystring format incremental update, containing
+                        //label in hh:mm:ss format
+                        //and a value (random).
+                        currDate = new Date(),
+                        label = formatTime(currDate.getHours()) + ":" + formatTime(currDate.getMinutes()) + ":" + formatTime(currDate.getSeconds()),
+                        //Get random number between 5 & 20 - rounded
+                        footfall = Math.round(Math.random() * 15) + 5,
+                        strData = "&label=" + label + "&value=" + footfall;
+                    //Feed it to chart.
+                    chartRef.feedData(strData);
+                }
+                var myVar = setInterval(function () {
+                    updateData();
+
+                }, 5000);
+            }
+        }
+
+    });
+
+    footfallChart.render();
+
+});</script></body></html>

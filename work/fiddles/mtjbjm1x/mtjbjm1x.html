@@ -1,0 +1,120 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: getObjectReference</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#get_ref {
+    height: 25px;
+    font-size: 13px;
+}
+#redraw {
+    height: 25px;
+    font-size: 13px;
+}
+.rep_text {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- This sample shows usage of getObjectReference() method -->
+<div id="indicatorDiv">Method Name: <b>getObjectReference()</b>
+
+    <br>
+    <br>Returns the DOMElement created inside the chart container by FusionCharts. The returned DOMElement here is the <span> element created by FusionCharts to render the chart. Click <a href="" target="_blank">here</a> to read more about the <b>getObjectReference()</b> method.</br>
+        <br>Click <b>Remove the SVG element</b> to remove it from the &lt;span&gt; element. Click <b>Redraw</b> to re-render the chart.</br>
+    </div>
+<br>
+<center>
+    <br><button id="get_ref">Remove the SVG element</button></br>
+    <br><button id="redraw">Redraw</button></br>
+    <br>
+    <div id="chart-container">FusionCharts will render here</div>
+</center>
+    <script type="text/javascript">FusionCharts.ready(function () {
+    var analysisChart = new FusionCharts({
+        id: "chart_1",
+        type: 'stackedColumn3DLine',
+        renderAt: 'chart-container',
+        width: '400',
+        height: '250',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Quarterly Cost Analysis",
+                    "subCaption": "Harry's SuperMart",
+                    "numberprefix": "$",
+                    "xaxisname": "Quarters",
+                    "yaxisname": "Cost",
+                    "theme": "fint",
+                    "showvalues": "0",
+                    "captionFontSize": "13"
+            },
+                "categories": [{
+                "category": [{
+                    "label": "Quarter 1"
+                }, {
+                    "label": "Quarter 2"
+                }, {
+                    "label": "Quarter 3"
+                }, {
+                    "label": "Quarter 4"
+                }]
+            }],
+                "dataset": [{
+                "seriesname": "Fixed Cost",
+                    "data": [{
+                    "value": "235000"
+                }, {
+                    "value": "225100"
+                }, {
+                    "value": "222000"
+                }, {
+                    "value": "230500"
+                }]
+            }, {
+                "seriesname": "Variable Cost",
+                    "data": [{
+                    "value": "230000"
+                }, {
+                    "value": "143000"
+                }, {
+                    "value": "198000"
+                }, {
+                    "value": "327600"
+                }]
+            }, {
+                "seriesname": "Budgeted cost",
+                    "renderas": "Line",
+                    "data": [{
+                    "value": "455000"
+                }, {
+                    "value": "334000"
+                }, {
+                    "value": "426000"
+                }, {
+                    "value": "403000"
+                }]
+            }]
+        }
+    }).render();
+    /**
+     * @description
+     * The getObjectReference() method returns the DOMElement created inside the chart container by FusionCharts. This is equivalent to accessing the DOMElement using the ref property.
+     *  @param {String} id: ID of the chart, whose DOMElement is to be referenced.
+     * usage: FusionCharts.getObjectReference(id);
+     */
+
+
+    function replaceSVG() {
+        var chart = FusionCharts.getObjectReference("chart_1");
+        chart.innerHTML = "<span class='rep_text'>The svg element of the chart is replaced by this text</span>";
+    }
+
+    function reDrawSVG() {
+        analysisChart.render();
+    }
+    document.getElementById("get_ref").addEventListener("click", replaceSVG);
+    document.getElementById("redraw").addEventListener("click", reDrawSVG);
+});</script></body></html>

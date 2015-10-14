@@ -1,0 +1,25 @@
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+.err {
+    color:red;
+}
+#data {
+    height:130px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 12px;
+}
+#label {
+    font-family:'Arial', 'Helvetica';
+    font-size: 12px;
+}
+#resize {
+    font-family:'Arial', 'Helvetica';
+    font-size: 12px;
+}

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts - Gallery Example - Area 2D Chart</title><style>#chart-container {
+    background-color: #000;
+    width: 400px;
+    height: 300px;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#set_transparent {
+    height: 25px;
+    font-size: 13px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- This sample shows the usage of the setTransparent() method. -->
+<div id="indicatorDiv">Method Name: <b>setTransparent()</b>
+
+    <br>
+    <br>Sets the background color of the <b>container DOM element</b> (not to be confused with the chart background), within which the chart is rendered, as transparent.</br>
+    <br>Click <b>Set Transparent</b> to set the container background to transparent.</br>
+    <br>
+    <center>
+        <br>
+        <button id="set_transparent">Set Transparent</button>
+        </br>
+        <br>
+        <div id="chart-container">FusionCharts will render here</div>
+        </br>
+    </center>
+</div><script type="text/javascript">FusionCharts.ready(function () {
+    var salesChart = new FusionCharts({
+        type: 'area2d',
+        renderAt: 'chart-container',
+        width: '400',
+        height: '300',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Sales of Liquor",
+                    "subCaption": "Last week",
+                    "xAxisName": "Day",
+                    "yAxisName": "Sales (In USD)",
+                    "numberPrefix": "$",
+                    "theme": "fint",
+                    "captionFontSize": "13",
+                    "subcaptionFontSize": "12",
+                    "subcaptionFontBold": "0"
+            },
+
+                "data": [{
+                "label": "Mon",
+                    "value": "4123"
+            }, {
+                "label": "Tue",
+                    "value": "4633"
+            }, {
+                "label": "Wed",
+                    "value": "5507"
+            }, {
+                "label": "Thu",
+                    "value": "4910"
+            }, {
+                "label": "Fri",
+                    "value": "5529"
+            }, {
+                "label": "Sat",
+                    "value": "5803"
+            }, {
+                "label": "Sun",
+                    "value": "6202"
+            }]
+        }
+    });
+    salesChart.render();
+    var btn = document.getElementById('set_transparent');
+    btn.addEventListener('click', function () {
+        /**
+     * @description
+     * The setTransparent() method sets the background color of the container DOM element, within which the chart is rendered, as transparent. This is not to be confused with the chart’s background.
+
+     * @param {Boolean} transparency: Passing true implies that the chart is transparent.
+     * usage: chartObj.setTransparent(transparency);
+     *         
+     */
+        salesChart.setTransparent(true);
+        salesChart.render();
+        this.disabled = true;
+    });
+});</script></body></html>

@@ -1,0 +1,17 @@
+#exact_copy {
+    height: 25px;
+    font-size: 13px;
+}
+#modified_copy {
+    height: 25px;
+    font-size: 13px;
+}
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}

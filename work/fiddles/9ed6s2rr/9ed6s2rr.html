@@ -1,0 +1,77 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: slicePlotItem</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#slice_name {
+    height: 25px;
+    font-size: 12px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- This sample shows the usage of the slicePlotItem() method. -->
+<div id="indicatorDiv">Method Name: <b>slicePlotItem()</b>
+
+    <br>
+    <br>Slices in/slices out a pie/doughnut slice.</br>
+    <br>When a pie-slice is selected from the drop-down given below, the corresponding slice on the pie chart is sliced out. Because multi-slicing has been disabled in the JSON chart data, when one slice is sliced out, the previously sliced out slice is sliced in.</br>
+    <br>
+    <center>
+        <select id="slice_name">
+            <option value="0">Teenager</option>
+            <option value="1">Adult</option>
+            <option value="2">Mid-age</option>
+        </select>
+        </br>
+        <div id="chart-container">FusionCharts will render here</div>
+    </center>
+</div><script type="text/javascript">FusionCharts.ready(function () {
+    var ageGroupChart = new FusionCharts({
+        type: 'pie2d',
+        renderAt: 'chart-container',
+        width: '350',
+        height: '350',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Split of Visitors by Age Group",
+                    "subCaption": "Last year",
+                    "captionFontSize": "13",
+                    "subcaptionFontSize": "12",
+                    "theme": "fint",
+                    "enableMultiSlicing": "0"
+            },
+                "data": [{
+                "label": "Teenage",
+                    "value": "1250400",
+                    "isSliced": "1"
+            }, {
+                "label": "Adult",
+                    "value": "1463300"
+            }, {
+                "label": "Mid-age",
+                    "value": "1050700"
+            }]
+        }
+    }).render();
+
+    var msg = document.getElementById("msg");
+    /**
+     * @description
+     * The slicePlotItem() method slices in/slices out a pie/doughnut slice.
+     *
+     * @param {Number} index: Index of the pie/doughnut slice
+     * @param {Boolean} slice: If set to true, it will slice out a slice, which is in the sliced-in state. If the slice is already in the sliced-out state, the state is retained.
+     *
+     * usage: chartObj.slicePlotItem(index,slice);
+     *         
+     */
+    function slice() {
+        var slice_name = document.getElementById("slice_name");
+        var flag = ageGroupChart.slicePlotItem(slice_name.value, true);
+
+    }
+    document.getElementById("slice_name").addEventListener("click", slice);
+
+});</script></body></html>

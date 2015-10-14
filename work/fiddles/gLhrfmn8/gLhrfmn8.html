@@ -1,0 +1,252 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Event: scrollEnd</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#header {
+    display: none;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 14px;
+}
+p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#attrs-table {
+    text-align: center;
+    width: 500px;
+}
+.parameter-name, .parameter-value {
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+}
+.title, .value {
+    float:left;
+    width: 230px;
+    height: 20px;
+    background: #fff;
+    padding: 5px 10px;
+}
+.title {
+    clear: left;
+}
+.title:nth-child(4n+1), .value:nth-child(4n+2) {
+    background: rgb(0, 117, 194);
+    color: #fff;
+}
+.value {
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script></head><body><!-- This sample shows the event parameters, and their values, when scrollEnd event is triggered-->
+<div id="indicatorDiv">Event name: <b> scrollEnd </b> 
+    <br>
+    <br>Triggered when a chart completes scrolling.</br>
+    <br>All events, when triggered, will provide two parameters for the handler - <b> eventObj </b> (object containing information generic to all events) and <b> dataObj </b> (object containing information specific to an event).</br>
+    <br>Use the scroll bar to scroll through the chart. The scrollStart event is triggered when you stop scrolling. Scroll down to the table rendered below the chart to view information contained in the dataObj object. To view information contained in the eventObj object, open the console.</br>
+    </br>
+</div>
+<div id="chart-container">FusionCharts will render here</div>
+<div>
+    <div>
+        <div id="header">
+            <div class="parameter-name">Parameter Name</div>
+            <div class="parameter-value">Parameter Value</div>
+        </div>
+        <div id="attrs-table"></div>
+    </div>
+</div><script type="text/javascript">FusionCharts.ready(function () {
+    var revenueChart = new FusionCharts({
+        type: 'scrollColumn2d',
+        renderAt: 'chart-container',
+        width: '500',
+        height: '350',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Sales Trends",
+                    "subcaption": "FY 2012 - FY 2013",
+                    "xaxisname": "Month",
+                    "yaxisname": "Revenue",
+                    "showvalues": "1",
+                    "placeValuesInside": "1",
+                    "rotateValues": "1",
+                    "valueFontColor": "#ffffff",
+                    "numberprefix": "$",
+
+                //Cosmetics
+                "baseFontColor": "#333333",
+                    "baseFont": "Helvetica Neue,Arial",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0",
+                    "showborder": "0",
+                    "paletteColors": "#0075c2",
+                    "bgcolor": "#FFFFFF",
+                    "showalternatehgridcolor": "0",
+                    "showplotborder": "0",
+                    "labeldisplay": "WRAP",
+                    "divlinecolor": "#CCCCCC",
+                    "showcanvasborder": "0",
+                    "linethickness": "3",
+                    "plotfillalpha": "100",
+                    "plotgradientcolor": "",
+                    "numVisiblePlot": "12",
+                    "divlineAlpha": "100",
+                    "divlineColor": "#999999",
+                    "divlineThickness": "1",
+                    "divLineIsDashed": "1",
+                    "divLineDashLen": "1",
+                    "divLineGapLen": "1",
+                    "scrollheight": "10",
+                    "flatScrollBars": "1",
+                    "scrollShowButtons": "0",
+                    "scrollColor": "#cccccc",
+                    "showHoverEffect": "1"
+            },
+                "categories": [{
+                "category": [{
+                    "label": "Jan 2012"
+                }, {
+                    "label": "Feb 2012"
+                }, {
+                    "label": "Mar 2012"
+                }, {
+                    "label": "Apr 2012"
+                }, {
+                    "label": "May 2012"
+                }, {
+                    "label": "Jun 2012"
+                }, {
+                    "label": "Jul 2012"
+                }, {
+                    "label": "Aug 2012"
+                }, {
+                    "label": "Sep 2012"
+                }, {
+                    "label": "Oct 2012"
+                }, {
+                    "label": "Nov 2012"
+                }, {
+                    "label": "Dec 2012"
+                }, {
+                    "label": "Jan 2013"
+                }, {
+                    "label": "Feb 2013"
+                }, {
+                    "label": "Mar 2013"
+                }, {
+                    "label": "Apr 2013"
+                }, {
+                    "label": "May 2013"
+                }, {
+                    "label": "Jun 2013"
+                }, {
+                    "label": "Jul 2013"
+                }, {
+                    "label": "Aug 2013"
+                }, {
+                    "label": "Sep 2013"
+                }, {
+                    "label": "Oct 2013"
+                }, {
+                    "label": "Nov 2013"
+                }, {
+                    "label": "Dec 2013"
+                }]
+            }],
+                "dataset": [{
+                "data": [{
+                    "value": "27400"
+                }, {
+                    "value": "29800"
+                }, {
+                    "value": "25800"
+                }, {
+                    "value": "26800"
+                }, {
+                    "value": "29600"
+                }, {
+                    "value": "32600"
+                }, {
+                    "value": "31800"
+                }, {
+                    "value": "36700"
+                }, {
+                    "value": "29700"
+                }, {
+                    "value": "31900"
+                }, {
+                    "value": "34800"
+                }, {
+                    "value": "24800"
+                }, {
+                    "value": "26300"
+                }, {
+                    "value": "31800"
+                }, {
+                    "value": "30900"
+                }, {
+                    "value": "33000"
+                }, {
+                    "value": "36200"
+                }, {
+                    "value": "32100"
+                }, {
+                    "value": "37500"
+                }, {
+                    "value": "38500"
+                }, {
+                    "value": "35400"
+                }, {
+                    "value": "38200"
+                }, {
+                    "value": "33300"
+                }, {
+                    "value": "38300"
+                }]
+            }]
+        },
+            "events": {
+
+            /**
+             * @description
+             * This event is triggered when you complete scrolling through a chart.
+             *
+             * @param {Object} eventObj: An object containing all the details related to this event like eventId, sender, etc.
+             * @param {Object} dataObj: An object containing all the details related to chart data-the previous and current starting position of the scroll bar, in this case.
+             */
+
+                "scrollEnd": function (eventObj, dataObj) {
+                console.log(eventObj);
+                var header = document.getElementById('header');
+                header.style.display = 'block';
+
+                var tempDiv = document.createElement('div');
+                var attrsTable = document.getElementById('attrs-table');
+                var titleDiv, valueDiv;
+                for (var prop in dataObj) {
+                    titleDiv = document.createElement('div');
+                    titleDiv.className = 'title';
+                    titleDiv.innerHTML = prop;
+
+                    valueDiv = document.createElement('div');
+                    valueDiv.className = 'value';
+                    valueDiv.innerHTML = dataObj[prop];
+
+                    tempDiv.appendChild(titleDiv);
+                    tempDiv.appendChild(valueDiv);
+                }
+                attrsTable.innerHTML = '';
+                attrsTable.appendChild(tempDiv);
+            }
+        }
+    });
+
+    revenueChart.render();
+});</script></body></html>

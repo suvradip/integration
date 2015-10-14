@@ -1,0 +1,137 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Event: beforeDispose</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#header {
+    display: none;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 14px;
+}
+p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#attrs-table {
+    text-align: center;
+    width: 500px;
+}
+.parameter-name, .parameter-value {
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+}
+.title, .value {
+    float:left;
+    width: 230px;
+    height: 20px;
+    background: #fff;
+    padding: 5px 10px;
+}
+.title {
+    clear: left;
+}
+.title:nth-child(4n+1), .value:nth-child(4n+2) {
+    background: rgb(0, 117, 194);
+    color: #fff;
+}
+.value {
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- This sample shows the event parameters, and their values, when beforeDispose event is triggered-->
+<div id="indicatorDiv">Event name: <b> beforeDispose </b> 
+    <br>
+    <br>Triggered before a chart is deleted and cleaned from memory.</br>
+    <br>When triggered, the beforeDispose event provides the <b> eventObj </b> object (object containing information generic to all events) parameter to the event handler.</br>
+    <br>Click the <b> Dispose Chart </b> button to dispose the chart and trigger the event.</br>
+    <br>The table rendered shows the information contained in the eventObj object.</br>
+</div>
+<div id="chart-container">FusionCharts will render here</div>
+<div>
+    <button id="btn_dispose">Dispose Chart</button>
+</div>
+<div>
+    <div>
+        <div id="header">
+            <div class="parameter-name">Parameter Name</div>
+            <div class="parameter-value">Parameter Value</div>
+        </div>
+        <div id="attrs-table"></div>
+    </div>
+</div><script type="text/javascript">FusionCharts.ready(function () {
+    var ageGroupChart = new FusionCharts({
+        type: 'pie2d',
+        renderAt: 'chart-container',
+        width: '500',
+        height: '250',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Split of visitors by age group",
+                    "subCaption": "Last year",
+                    "enableSmartLabels": "0",
+                    "showPercentValues": "1",
+                    "showTooltip": "0",
+                    "decimals": "1",
+                    "theme": "fint"
+            },
+                "data": [{
+                "label": "Teenage",
+                    "value": "1250400"
+            }, {
+                "label": "Adult",
+                    "value": "1463300"
+            }, {
+                "label": "Mid-age",
+                    "value": "1050700"
+            }, {
+                "label": "Senior",
+                    "value": "491000"
+            }]
+        },
+            "events": {
+
+            /**
+             * @description
+             *Triggered before a chart is deleted and cleaned from memory.         *
+             * @param {Object} eventObj: An object containing all the details related to this event like eventId, sender, etc.
+             */
+
+                "beforeDispose": function (eventObj) {
+                var header = document.getElementById('header');
+                header.style.display = 'block';
+                var tempDiv = document.createElement('div');
+                var attrsTable = document.getElementById('attrs-table');
+                var titleDiv, valueDiv;
+                // Iterating through all the properties in argObj and adding it to the DOM
+                for (var prop in eventObj) {
+                    titleDiv = document.createElement('div');
+                    titleDiv.className = 'title';
+                    titleDiv.innerHTML = prop;
+
+                    valueDiv = document.createElement('div');
+                    valueDiv.className = 'value';
+                    if (prop === 'data') {
+                        valueDiv.innerHTML = encodeURIComponent(dataObj[prop]);
+                    } else {
+                        valueDiv.innerHTML = eventObj[prop];
+                    }
+                    tempDiv.appendChild(titleDiv);
+                    tempDiv.appendChild(valueDiv);
+                }
+                attrsTable.innerHTML = '';
+                attrsTable.appendChild(tempDiv);
+            }
+        }
+    });
+
+    ageGroupChart.render();
+    document.getElementById("btn_dispose").addEventListener('click', function () {
+        ageGroupChart.dispose();
+    });
+});</script></body></html>

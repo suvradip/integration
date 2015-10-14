@@ -1,0 +1,90 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: render (static)</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#render {
+    height: 25px;
+    font-size: 13px;
+}
+.container_text {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- This sample shows usage of the static render() method -->
+<div id="indicatorDiv">Method Name: <b>render()</b> (static)
+    <br>
+    <br>Uses a one-line argument parameter to render FusionCharts directly into the container specified in the arguments.</br>
+    <br>Click <b>Render</b> to render the chart.</br>
+</div>
+<br>
+<center>
+    <br>
+    <button id="render">Render the chart</button>
+    </br>
+    <br>
+    <div id="chart-container" class="container_text">FusionCharts will render here</div>
+    </br>
+</center><script type="text/javascript">FusionCharts.ready(function () {
+    var chart_options = {
+        type: 'doughnut2d',
+        renderAt: 'chart-container',
+        width: '500',
+        height: '300',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Split of Revenue by Product Categories",
+                    "subCaption": "2014",
+                    "numberPrefix": "$",
+                    "theme": "fint",
+                    "defaultCenterLabel": "Total revenue: $64.08K",
+                    "centerLabel": "Revenue from $label: $value",
+                    "centerLabelBold": "1",
+                    "showTooltip": "0",
+                    "decimals": "0",
+                    "captionFontSize": "13",
+                    "subcaptionFontSize": "12",
+                    "subcaptionFontBold": "0"
+            },
+                "data": [{
+                "label": "Food",
+                    "value": "28504"
+            }, {
+                "label": "Apparels",
+                    "value": "14633"
+            }, {
+                "label": "Electronics",
+                    "value": "10507"
+            }, {
+                "label": "Household",
+                    "value": "4910"
+            }]
+        }
+    };
+
+    /**
+     * @description
+     * The render() method uses a one-line argument parameter to render FusionCharts directly into the container specified in the arguments.
+     *
+     * @param {Object} options: Chart configuration options required to create a chart. The options must include the renderAt parameter for the chart to render instantly.
+     *
+     * @param {Function} callback: Callback function executed when the chart is successfully rendered.
+     * usage: FusionCharts.render(options);
+     *         FusionCharts.render(options,callback);
+
+     */
+    function render_chart() {
+        //msg.innerHTML = "";
+        var revenueChart = new FusionCharts.render(chart_options);
+
+    }
+
+    document.getElementById("render").addEventListener("click", render_chart);
+
+
+
+});</script></body></html>

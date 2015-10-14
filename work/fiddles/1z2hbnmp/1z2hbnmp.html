@@ -1,0 +1,128 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: getChartAttribute</title><style>#label {
+    font-family:'Arial', 'Helvetica';
+    font-size: 14px;
+}
+#current_value {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#theme-type {
+    height: 25px;
+    font-size: 13px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.carbon.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.ocean.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.zune.js"></script></head><body><!-- This sample shows the usage of the getChartAttribute() method -->
+<div id="indicatorDiv">Method Name: <b>getChartAttribute()</b>
+
+    <br>
+    <br>Fetches values of chart attributes explicitly applied to the root chart object of the JSON data. To read more about this method, click <a href="http://www.fusioncharts.com/dev/api/fusioncharts/fusioncharts-methods.html#getChartAttribute" target="_blank">here</a>.</br>
+    <br>From the drop-down below, when a theme is selected, the <b>setChartAttribute()</b> method is used to update the value of the <b>theme</b> attribute. The chart is then rendered with the selected theme. The <b>getChartAttribute()</b> method is then used to update the value rendered with the text <b>Current theme</b>.</br>
+</div>
+<br>
+<center>
+    <label id="label">Select a theme:
+        <select id="theme-type">
+            <option value="carbon">carbon</option>
+            <option value="zune">zune</option>
+            <option value="ocean">ocean</option>
+        </select>
+    </label>
+    <br>
+    <br>
+    <div id="current_value"></div>
+    </br>
+    <div id="chart-container">FusionCharts will render here</div>
+</center><script type="text/javascript">FusionCharts.ready(function () {
+    var visitChart = new FusionCharts({
+        type: 'column2d',
+        renderAt: 'chart-container',
+        width: '450',
+        height: '250',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Split of Visitors by Age Group",
+                    "subCaption": "Last year",
+
+                    "bgColor": "#ffffff",
+                    "showBorder": "0",
+                    "use3DLighting": "0",
+                    "showShadow": "0",
+                    "enableSmartLabels": "0",
+                    "startingAngle": "0",
+                    "showPercentValues": "1",
+                    "showPercentInTooltip": "0",
+                    "decimals": "1",
+                    "captionFontSize": "13",
+                    "subcaptionFontSize": "12",
+                    "subcaptionFontBold": "0",
+                    "toolTipColor": "#ffffff",
+                    "toolTipBorderThickness": "0",
+                    "toolTipBgColor": "#000000",
+                    "toolTipBgAlpha": "80",
+                    "toolTipBorderRadius": "2",
+                    "toolTipPadding": "5",
+                    "showHoverEffect": "1",
+                    "showLegend": "1",
+                    "legendBgColor": "#ffffff",
+                    "legendBorderAlpha": '0',
+                    "legendShadow": '0',
+                    "legendItemFontSize": '10',
+                    "legendItemFontColor": '#666666',
+                    "theme": 'carbon'
+
+
+
+            },
+                "data": [{
+                "label": "Teenage",
+                    "value": "1250400"
+            }, {
+                "label": "Adult",
+                    "value": "1463300"
+            }, {
+                "label": "Mid-age",
+                    "value": "1050700"
+            }, {
+                "label": "Senior",
+                    "value": "491000"
+            }]
+        }
+    });
+
+    visitChart.render();
+
+
+    /**
+             * @description
+             * The getChartAttribute() fetches values of chart attributes explicitly applied to the root chart object (or the chart node element). 
+
+
+             *
+             * @param {String} attribute: To fetch the value of a single attribute, pass the attribute name as a string. For multiple attributes, pass an array of attribute names. Values will be returned in the order of the attribute names in the array.
+ 
+             * usage: chartObject.getChartAttribute(attribute);
+          
+             */
+    document.getElementById("current_value").innerHTML = "Current theme: " + visitChart.getChartAttribute("theme");
+
+    function setAtt() {
+
+        var select = document.getElementById("theme-type");
+        console.log(select.value);
+        visitChart.setChartAttribute("theme", select.value);
+        document.getElementById("current_value").innerHTML = "Current theme: " + visitChart.getChartAttribute("theme");
+
+
+    }
+
+    document.getElementById("theme-type").addEventListener("change", setAtt);
+
+});</script></body></html>

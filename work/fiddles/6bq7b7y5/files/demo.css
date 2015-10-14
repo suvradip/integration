@@ -1,0 +1,30 @@
+#set {
+    height: 25px;
+    font-size: 13px;
+}
+#rem {
+    height: 25px;
+    font-size: 13px;
+}
+#data1 {
+    height:20px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#data2 {
+    height:20px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#data {
+    height:50px;
+}

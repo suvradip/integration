@@ -1,0 +1,8 @@
+---
+name: FusionCharts API-Methods: addEventListener (static)
+description: 
+resources: 
+  - http://static.fusioncharts.com/code/latest/fusioncharts.js
+  - http://static.fusioncharts.com/code/latest/fusioncharts.charts.js
+  - http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js
+...

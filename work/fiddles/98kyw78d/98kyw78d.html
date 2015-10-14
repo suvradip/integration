@@ -1,0 +1,153 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Event: printCancelled</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#header {
+    display: none;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 14px;
+}
+p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#attrs-table {
+    text-align: center;
+    width: 500px;
+}
+.parameter-name, .parameter-value {
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+}
+.title, .value {
+    float:left;
+    width: 230px;
+    height: 20px;
+    background: #fff;
+    padding: 5px 10px;
+}
+.title {
+    clear: left;
+}
+.title:nth-child(4n+1), .value:nth-child(4n+2) {
+    background: rgb(0, 117, 194);
+    color: #fff;
+}
+.value {
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.widgets.js"></script></head><body><!-- This sample shows the event parameters, and their values, when printCancelled event is triggered-->
+<div id="indicatorDiv">Event name: <b> printCancelled </b> 
+    <br>
+    <br>Triggered when the default behavior of the beforePrint event is cancelled by calling the eventObj.preventDefault() method.</br>
+    <br>When triggered, the beforePrint event provides the <b> eventObj </b> object (object containing information generic to all events) parameter to the event handler.</br>
+    <br>Scroll down to the table rendered below the chart to view information contained in the eventObj object.</br>
+    </br>
+</div>
+<div id="chart-container">FusionCharts will render here</div>
+<button id="print">Print</button>
+<div>
+    <div>
+        <div id="header">
+            <div class="parameter-name">Parameter Name</div>
+            <div class="parameter-value">Parameter Value</div>
+        </div>
+        <div id="attrs-table"></div>
+    </div>
+</div><script type="text/javascript">FusionCharts.ready(function () {
+    var salesChart = new FusionCharts({
+        type: 'vled',
+        renderAt: 'chart-container',
+        id: 'myChart',
+        width: '200',
+        height: '300',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Current Flow on Main Meter",
+                    "subcaption": "New York Store",
+                    "chartleftmargin": "40",
+                    "chartbottommargin": "20",
+                    "gaugebgcolor": "#ff0000",
+                    "gaugefillcolor": "#1f0601",
+                    "lowerlimit": "100",
+                    "upperlimit": "400",
+                    "numbersuffix": " amp",
+                    "bgalpha": "0",
+                    "borderalpha": "20",
+                    "showborder": "1",
+                    "minortmalpha": "0",
+                    "animation": "1",
+                    "showvalue": "1",
+                    "valuespadding": "10",
+                    "valuefontbold": "1",
+                    "ledgap": "0"
+            },
+                "colorrange": {
+                "color": [{
+                    "minvalue": "100",
+                        "maxvalue": "400",
+                        "code": "#ff0000"
+                }]
+            },
+                "value": "250"
+        },
+            "events": {
+            "rendered": function (evt, data) {
+                var btn = document.getElementById('print');
+                btn.addEventListener('click', function () {
+                    evt.sender.print();
+                });
+            },
+                // Cancelling the print action. This will trigger the printCancelled event
+                "beforePrint": function (eventObj) {
+                    eventObj.preventDefault();
+                },     
+
+                /**
+                 * @description
+                 *Triggered when the default behavior of the beforePrint event is cancelled by calling the eventObj.preventDefault() method.  *
+                 * @param {Object} eventObj: An object containing all the details related to this event like eventId, sender, etc.
+                 */
+                
+                "printCancelled": function (eventObj) {
+                var header = document.getElementById('header');
+                header.style.display = 'block';
+
+                var tempDiv = document.createElement('div');
+                var attrsTable = document.getElementById('attrs-table');
+                var titleDiv, valueDiv;
+                // Iterating through all the properties in argObj and adding it to the DOM
+                for (var prop in eventObj) {
+                    titleDiv = document.createElement('div');
+                    titleDiv.className = 'title';
+                    titleDiv.innerHTML = prop;
+
+                    valueDiv = document.createElement('div');
+                    valueDiv.className = 'value';
+                    valueDiv.innerHTML = eventObj[prop];
+
+                    tempDiv.appendChild(titleDiv);
+                    tempDiv.appendChild(valueDiv);
+                }
+                attrsTable.innerHTML = '';
+                attrsTable.appendChild(tempDiv);
+            }
+        }
+    });
+    salesChart.render();
+
+
+});
+//Update data using intervals
+setInterval(function () {
+    var num = Math.floor(Math.random() * 150) + 150;
+    FusionCharts("myChart").feedData("&value=" + num);
+}, 3000);</script></body></html>

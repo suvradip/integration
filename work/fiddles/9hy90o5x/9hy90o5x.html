@@ -1,0 +1,168 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Event: renderComplete</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#header {
+    display: none;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 14px;
+}
+p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#attrs-table {
+    text-align: center;
+    width: 500px;
+}
+.parameter-name, .parameter-value {
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+}
+.title, .value {
+    float:left;
+    width: 230px;
+    height: 20px;
+    background: #fff;
+    padding: 5px 10px;
+}
+.title {
+    clear: left;
+}
+.title:nth-child(4n+1), .value:nth-child(4n+2) {
+    background: rgb(0, 117, 194);
+    color: #fff;
+}
+.value {
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script></head><body><!-- This sample shows the event parameters, and their values, when renderComplete event is triggered-->
+<div id="indicatorDiv">Event name: <b> renderComplete </b> 
+    <br>
+    <br>Triggered every time a chart is rendered using the render() method, the chartType() method, or the setChartData() method.</br>
+    <br>All events, when triggered, will provide two parameters for the handler - <b> eventObj </b> (object containing information generic to all events) and <b> dataObj </b> (object containing information specific to an event).</br>
+    <br>Scroll down to the table rendered below the chart to view information contained in the dataObj object. To view information contained in the eventObj object, open the console.</br>
+    </br>
+</div>
+<div id="chart-container">FusionCharts will render here</div>
+<div>
+    <div>
+        <div id="header">
+            <div class="parameter-name">Parameter Name</div>
+            <div class="parameter-value">Parameter Value</div>
+        </div>
+        <div id="attrs-table"></div>
+    </div>
+</div><script type="text/javascript">FusionCharts.ready(function () {
+    var revenueChart = new FusionCharts({
+        type: 'column2d',
+        renderAt: 'chart-container',
+        width: '500',
+        height: '350',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Monthly revenue for last year",
+                    "subCaption": "Harry's SuperMart",
+                    "xAxisName": "Month",
+                    "yAxisName": "Revenue (In USD)",
+                    "numberPrefix": "$",
+                    "paletteColors": "#0075c2",
+                    "bgColor": "#ffffff",
+                    "borderAlpha": "20",
+                    "canvasBorderAlpha": "0",
+                    "usePlotGradientColor": "0",
+                    "plotBorderAlpha": "10",
+                    "placevaluesInside": "1",
+                    "rotatevalues": "1",
+                    "valueFontColor": "#ffffff",
+                    "showXAxisLine": "1",
+                    "xAxisLineColor": "#999999",
+                    "divlineColor": "#999999",
+                    "divLineIsDashed": "1",
+                    "showAlternateHGridColor": "0",
+                    "subcaptionFontBold": "0",
+                    "subcaptionFontSize": "14"
+            },
+                "data": [{
+                "label": "Jan",
+                    "value": "420000"
+            }, {
+                "label": "Feb",
+                    "value": "810000"
+            }, {
+                "label": "Mar",
+                    "value": "720000"
+            }, {
+                "label": "Apr",
+                    "value": "550000"
+            }, {
+                "label": "May",
+                    "value": "910000"
+            }, {
+                "label": "Jun",
+                    "value": "510000"
+            }, {
+                "label": "Jul",
+                    "value": "680000"
+            }, {
+                "label": "Aug",
+                    "value": "620000"
+            }, {
+                "label": "Sep",
+                    "value": "610000"
+            }, {
+                "label": "Oct",
+                    "value": "490000"
+            }, {
+                "label": "Nov",
+                    "value": "900000"
+            }, {
+                "label": "Dec",
+                    "value": "730000"
+            }]
+        },
+            "events": {
+
+            /**
+             * @description
+             * Triggered every time a chart is rendered using the render() method, the chartType() method, or the setChartData() method.
+             *
+             * @param {Object} eventObj: An object containing all the details related to this event like eventId, sender, etc.
+             * @param {Object} dataObj: An object containing all the details related to the chart, such as the chart width and height, and so on.
+             */
+
+                "renderComplete": function (eventObj, dataObj) {
+                console.log(eventObj);
+                var header = document.getElementById('header');
+                header.style.display = 'block';
+
+                var tempDiv = document.createElement('div');
+                var attrsTable = document.getElementById('attrs-table');
+                var titleDiv, valueDiv;
+                for (var prop in dataObj) {
+                    titleDiv = document.createElement('div');
+                    titleDiv.className = 'title';
+                    titleDiv.innerHTML = prop;
+
+                    valueDiv = document.createElement('div');
+                    valueDiv.className = 'value';
+                    valueDiv.innerHTML = dataObj[prop];
+
+                    tempDiv.appendChild(titleDiv);
+                    tempDiv.appendChild(valueDiv);
+                }
+                attrsTable.innerHTML = '';
+                attrsTable.appendChild(tempDiv);
+                alert(eventObj.eventType);
+            }
+        }
+    }).render();
+});</script></body></html>

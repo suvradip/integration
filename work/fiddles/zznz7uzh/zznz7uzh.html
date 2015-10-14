@@ -1,0 +1,273 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionChartsAPI Event: markerRollOut</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#header {
+    display: none;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 14px;
+}
+p {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+#attrs-table {
+    text-align: center;
+    width: 500px;
+}
+.parameter-name, .parameter-value {
+    width: 250px;
+    font-weight: bold;
+    text-align: center;
+    float: left;
+}
+.title, .value {
+    float:left;
+    width: 230px;
+    height: 20px;
+    background: #fff;
+    padding: 5px 10px;
+}
+.title {
+    clear: left;
+}
+.title:nth-child(4n+1), .value:nth-child(4n+2) {
+    background: rgb(0, 117, 194);
+    color: #fff;
+}
+.value {
+    word-wrap: break-word;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.maps.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/maps/fusioncharts.usa.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- This sample shows the event parameters, and their values, when markerRollOut event is triggered-->
+<div id="indicatorDiv">Event name: <b> markerRollOut </b> 
+    <br>
+    <br>Triggered when the mouse pointer is rolled out from over a marker on a map.</br>
+    <br>All events, when triggered, will provide two parameters for the handler - <b> eventObj </b> (object containing information generic to all events) and <b> dataObj </b> (object containing information specific to an event).</br>
+    <br>Roll the mouse pointer over and out of a marker on the map to trigger the event. Scroll down to the table rendered below the chart to view information contained in the dataObj object. To view information contained in the eventObj object, open the console.</br>
+    </br>
+</div>
+<div id="chart-container">FusionCharts will render here</div>
+<div>
+    <div>
+        <div id="header">
+            <div class="parameter-name">Parameter Name</div>
+            <div class="parameter-value">Parameter Value</div>
+        </div>
+        <div id="attrs-table"></div>
+    </div>
+</div><script type="text/javascript">FusionCharts.ready(function () {
+    var officeLoc = new FusionCharts({
+        type: 'usa',
+        renderAt: 'chart-container',
+        width: '500',
+        height: '400',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "theme": "fint",
+                    "useHoverColor": "0",
+                    "caption": "Harry's SuperMart Office Locations",
+                    "subcaption": "Head Office and Zonal Offices",
+                    "fillColor": "#b4ddb0",
+                    "borderColor": "#ffffff",
+                    "showCanvasBorder": "0",
+                    "showShadow": "0",
+                    "showLabels": "0",
+                    "markerRadius": "10",
+                    "markerBorderColor": "#000000",
+                //Used to enable marker hover effect                
+                "showMarkerHoverEffect": "1",
+                //Used to change marker fill color
+                "markerFillColor": "#6baa01",
+                //Used to change marker border thickness on hover
+                "markerBorderThickness": "2",
+                //Used to change marker fill color on hover                
+                "markerFillHoverColor": "#4ae5e7",
+                //Used to change marker border color on hover 
+                "markerBorderHoverColor": "#333333",
+                //Used to change marker border thickness on hover 
+                "markerBorderHoverThickness": "4"
+            },
+                "markers": {
+                "application": [{
+                    "id": "west-zone-ho-1",
+                        "shapeId": "zo-shape"
+                }, {
+                    "id": "west-zone-ho-2",
+                        "shapeId": "zo-shape"
+                }, {
+                    "id": "mid-west-zone-ho",
+                        "shapeId": "hdo-shape"
+                }, {
+                    "id": "north-east-ho",
+                        "shapeId": "zo-shape"
+                }, {
+                    "id": "south-ho",
+                        "shapeId": "zo-shape"
+                }],
+                    "definition": [{
+                    "id": "west-zone-ho-1",
+                        "x": "100",
+                        "y": "250",
+                        "tooltext": "<b>Zonal office, California</b>{br}Address: 41216 N. Fern Avenue Lancaster CA 93534 {br}Phone: 661-723-1538{br}e-mail: california_zo@harryssupermart.com"
+                }, {
+                    "id": "west-zone-ho-2",
+                        "x": "140",
+                        "y": "40",
+                        "tooltext": "<b>Zonal office, Montana</b>{br}Address: 2719 US HWY 2 W Havre, MT 59501{br}Phone: 406-265-1923 {br}e-mail: havre_zo@harryssupermart.com"
+                }, {
+                    "id": "mid-west-zone-ho",
+                        "x": "450",
+                        "y": "200",
+                        "tooltext": "<b>Head Office, Illinois</b>{br}Address: 1160 Vachel Lindsay Drive Springfield, IL 62703{br}Phone: (217)-753-6800 {br}e-mail: springfield_ho@harryssupermart.com"
+                }, {
+                    "id": "north-east-ho",
+                        "x": "625",
+                        "y": "100",
+                        "labelPos": "left",
+                        "Color": "#00ffff",
+                        "tooltext": "<b>Zonal Office, New York</b>{br}Address: 1581 Ford St extension Ogdensburg, NY 13669{br}Phone: (315) 392-2121{br}e-mail: newyork_zo@harryssupermart.com"
+                }, {
+                    "id": "south-ho",
+                        "x": "295",
+                        "y": "310",
+                        "tooltext": "<b>Zonal office, Texas</b>{br}Address: 210 W Loop 306 San Angelo, TX{br}Phone: 325-123-5703{br}e-mail: texas_zo@harryssupermart.com"
+                }],
+                    "shapes": [{
+                    "id": "hdo-shape",
+                        "type": "circle",
+                        "fillcolor": "#f6bc33"
+                }, {
+                    "id": "zo-shape",
+                        "type": "circle",
+                        "fillcolor": "#6da81e"
+                }]
+            },
+                "data": [{
+                "id": "HI"
+            }, {
+                "id": "WA"
+            }, {
+                "id": "OR"
+            }, {
+                "id": "CA",
+                    "displayValue": "California",
+                    "showLabel": "1"
+
+            }, {
+                "id": "NV"
+            }, {
+                "id": "AK"
+            }, {
+                "id": "AZ"
+            }, {
+                "id": "NM"
+            }, {
+                "id": "UT"
+            }, {
+                "id": "ID"
+            }, {
+                "id": "MT",
+                    "displayValue": "Montana",
+                    "showLabel": "1"
+            }, {
+                "id": "WY"
+            }, {
+                "id": "CO"
+            }, {
+                "id": "ND"
+            }, {
+                "id": "SD"
+            }, {
+                "id": "NE"
+            }, {
+                "id": "KS"
+            }, {
+                "id": "MN"
+            }, {
+                "id": "IA"
+            }, {
+                "id": "MO"
+            }, {
+                "id": "WI"
+            }, {
+                "id": "NJ"
+            }, {
+                "id": "NY",
+                    "displayValue": "New York",
+                    "showLabel": "1"
+            }, {
+                "id": "CT"
+            }, {
+                "id": "MA"
+            }, {
+                "id": "NH"
+            }, {
+                "id": "VT"
+            }, {
+                "id": "IL",
+                    "displayValue": "Illinois",
+                    "showLabel": "1"
+            }, {
+                "id": "TX",
+                    "displayValue": "Texas",
+                    "showLabel": "1"
+            }, {
+                "id": "MI"
+            }, {
+                "id": "IN"
+            }, {
+                "id": "OH"
+            }, {
+                "id": "PA"
+            }, {
+                "id": "ME"
+            }, {
+                "id": "OK"
+            }, {
+                "id": "AR"
+            }]
+        },
+            "events": {
+
+            /**
+             * @description
+             * Triggered when the mouse pointer is rolled out from over a marker on a map.
+             *
+             * @param {Object} eventObj: An object containing all the details related to this event like eventId, sender, etc.
+             * @param {Object} dataObj: An object containing all the details related to the marker, such as the marker ID, the x and y coordinates of the marker position, and so on.
+             */
+
+                "markerRollOut": function (eventObj, dataObj) {
+                console.log(eventObj);
+                var header = document.getElementById('header');
+                header.style.display = 'block';
+
+                var tempDiv = document.createElement('div');
+                var attrsTable = document.getElementById('attrs-table');
+                var titleDiv, valueDiv;
+                for (var prop in dataObj) {
+                    titleDiv = document.createElement('div');
+                    titleDiv.className = 'title';
+                    titleDiv.innerHTML = prop;
+
+                    valueDiv = document.createElement('div');
+                    valueDiv.className = 'value';
+                    valueDiv.innerHTML = dataObj[prop];
+
+                    tempDiv.appendChild(titleDiv);
+                    tempDiv.appendChild(valueDiv);
+                }
+                attrsTable.innerHTML = '';
+                attrsTable.appendChild(tempDiv);
+            }
+        }
+    });
+
+    officeLoc.render();
+});</script></body></html>

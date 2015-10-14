@@ -1,0 +1,105 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: isPlotItemSliced</title><style>body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#slice_name {
+    height: 25px;
+    font-size: 12px;
+}
+#check_status {
+    height: 25px;
+    font-size: 13px;
+}
+#status {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#msg {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+.slice_status {
+    color: #ee0930;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.charts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.fint.js"></script></head><body><!-- This sample shows the usage of the isPlotItemSliced() method. -->
+<div id="indicatorDiv">Method Name: <b>isPlotItemSliced()</b>
+
+    <br>
+    <br>Checks whether a particular slice of the pie/doughnut chart is sliced-out or sliced-in.</br>
+    <br>Select a pie-slice from the drop-down given below. Click <b>Check Status</b>. The text <b>The selected data plot is </b>, rendered below the button, is updated to reflect the status of the slice (sliced/not sliced).</br>
+    <br>
+    <center>
+        <select id="slice_name">
+            <option value="0">Teenager</option>
+            <option value="1">Adult</option>
+            <option value="2">Mid-age</option>
+        </select>
+        </br>
+        <br>
+        <button id="check_status"><b>Check Status</b>
+
+        </button>
+        </br>
+        <br>
+        <div id="status">The selected pie slice is <span id="msg"></span>
+
+        </div>
+        </br>
+        <div id="chart-container">FusionCharts will render here</div>
+    </center>
+</div><script type="text/javascript">FusionCharts.ready(function () {
+    var ageGroupChart = new FusionCharts({
+        type: 'pie2d',
+        renderAt: 'chart-container',
+        width: '400',
+        height: '250',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Split of Visitors by Age Group",
+                    "subCaption": "Last year",
+                    "theme": "fint",
+                    "captionFontSize": "13",
+                    "subcaptionFontSize": "12"
+            },
+                "data": [{
+                "label": "Teenage",
+                    "value": "1250400"
+            }, {
+                "label": "Adult",
+                    "value": "1463300"
+            }, {
+                "label": "Mid-age",
+                    "value": "1050700"
+            }]
+        }
+    }).render();
+
+    var msg = document.getElementById("msg");
+    /**
+     * @description
+     * The isPlotItemSliced() method checks whether a particular slice of the pie/doughnut chart is sliced-out or sliced-in.
+
+     *
+     * @param {Number} index: Index of the pie/doughnut slice being checked
+     *
+     *
+     * usage: chartObj.isPlotItemSliced(index);
+     *         
+     */
+    function slice() {
+        var plot_no = document.getElementById("slice_name");
+        var flag = ageGroupChart.isPlotItemSliced(plot_no.value);
+        if (flag === true) {
+            msg.innerHTML = "<span class='slice_status'>sliced.</span>";
+        } else {
+            msg.innerHTML = "<span class='slice_status'>not sliced.</span>";
+        }
+    }
+    document.getElementById("check_status").addEventListener("click", slice);
+
+});</script></body></html>

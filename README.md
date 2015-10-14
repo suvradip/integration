@@ -1,2 +1,2 @@
-# integration
-combing of try-it-editor template and fiddles content in single file
+# fusion-fiddle
+js fiddle like application for fusion chart

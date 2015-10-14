@@ -1,0 +1,117 @@
+<!DOCTYPE HTML><html><head><meta http-equiv="content-type" content="text/html; charset=UTF-8" /><meta http-equiv="edit-Type" edit="text/html; charset=utf-8" /><title>FusionCharts API-Methods: setChartAttribute</title><style>#label {
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#theme-type {
+    height: 25px;
+    font-size: 13px;
+}</style><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/fusioncharts.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.carbon.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.ocean.js"></script><script type="text/javascript" src="http://static.fusioncharts.com/code/latest/themes/fusioncharts.theme.zune.js"></script></head><body><!-- This sample shows the usage of the setChartAttribute() method -->
+<div id="indicatorDiv">Method Name: <b>setChartAttribute()</b>
+
+    <br>
+    <br>Updates a chart’s attributes with a new attribute-value pair, thus updating the chart’s data definition root (the chart object in the JSON data). This function is useful when a chart’s configuration has to be updated after it has been rendered once. To read more about this method, click <a href="http://www.fusioncharts.com/dev/api/fusioncharts/fusioncharts-methods.html#setChartAttribute" target="_blank">here</a>.</br>
+    <br>From the drop-down below, when a theme is selected, the <b>setChartAttribute()</b> method is used to update the value of the <b>theme</b> attribute. The chart is then rendered with the selected theme.</br>
+</div>
+<br>
+<center>
+    <label id="label">Select a theme:
+        <select id="theme-type">
+            <option value="carbon">carbon</option>
+            <option value="zune">zune</option>
+            <option value="ocean">ocean</option>
+        </select>
+    </label>
+    <div id="chart-container">FusionCharts will render here</div>
+</center><script type="text/javascript">FusionCharts.ready(function () {
+    var visitChart = new FusionCharts({
+        type: 'column2d',
+        renderAt: 'chart-container',
+        width: '450',
+        height: '250',
+        dataFormat: 'json',
+        dataSource: {
+            "chart": {
+                "caption": "Split of Visitors by Age Group",
+                    "subCaption": "Last year",
+
+                    "bgColor": "#ffffff",
+                    "showBorder": "0",
+                    "use3DLighting": "0",
+                    "showShadow": "0",
+                    "enableSmartLabels": "0",
+                    "startingAngle": "0",
+                    "showPercentValues": "1",
+                    "showPercentInTooltip": "0",
+                    "decimals": "1",
+                    "captionFontSize": "14",
+                    "subcaptionFontSize": "14",
+                    "subcaptionFontBold": "0",
+                    "toolTipColor": "#ffffff",
+                    "toolTipBorderThickness": "0",
+                    "toolTipBgColor": "#000000",
+                    "toolTipBgAlpha": "80",
+                    "toolTipBorderRadius": "2",
+                    "toolTipPadding": "5",
+                    "showHoverEffect": "1",
+                    "showLegend": "1",
+                    "legendBgColor": "#ffffff",
+                    "legendBorderAlpha": '0',
+                    "legendShadow": '0',
+                    "legendItemFontSize": '10',
+                    "legendItemFontColor": '#666666',
+                    "theme": 'carbon'
+
+
+
+            },
+                "data": [{
+                "label": "Teenage",
+                    "value": "1250400"
+            }, {
+                "label": "Adult",
+                    "value": "1463300"
+            }, {
+                "label": "Mid-age",
+                    "value": "1050700"
+            }, {
+                "label": "Senior",
+                    "value": "491000"
+            }]
+        }
+    });
+
+    visitChart.render();
+
+
+    /**
+             * @description
+             * The setChartAttribute() method updates a chart’s attributes with a new attribute-value pair, thus updating the chart’s data definition root (the <chart> node in the XML data or the chart object in the JSON data).
+.
+             *
+             * @param {Object} attribute : To set/update multiple attributes at once, an object containing all the key-value pairs is passed. In case of a single value, a string that is the key (the attribute name) is passed.
+             * @param {String} value : If the attributes parameter is a single string value, the value parameter contains the value for that key.
+ 
+             * usage : chartObject.setChartAttribute(attribute, value);
+          
+             */
+    function setAtt() {
+
+        var select = document.getElementById("theme-type");
+        console.log(select.value);
+        visitChart.setChartAttribute("theme", select.value);
+
+
+    }
+
+    document.getElementById("theme-type").addEventListener("change", setAtt);
+
+});</script></body></html>

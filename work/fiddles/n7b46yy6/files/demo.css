@@ -1,0 +1,17 @@
+body {
+    padding: 5px;
+    margin: 0 auto;
+}
+#indicatorDiv {
+    width: 500px;
+    font-family:'Arial', 'Helvetica';
+    font-size: 13px;
+}
+#data_format {
+    height: 25px;
+    font-size: 13px;
+}
+#get_chart_data {
+    height: 25px;
+    font-size: 13px;
+}
